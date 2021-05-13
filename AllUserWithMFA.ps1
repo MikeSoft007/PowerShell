@@ -6,7 +6,7 @@ Write-Host "Processing" $Users.Count "accounts..."
 ForEach ($User in $Users) {
     $MFAMethods = $User.StrongAuthenticationMethods.MethodType
     $MFAEnforced = $User.StrongAuthenticationRequirements.State
-    $MFAPhone = $User.StrongAuthenticationUserDetails.PhoneNumber
+    #$MFAPhone = $User.StrongAuthenticationUserDetails.PhoneNumber
     $DefaultMFAMethod = ($User.StrongAuthenticationMethods | ? { $_.IsDefault -eq "True" }).MethodType
     If (($MFAEnforced -eq "Enforced") -or ($MFAEnforced -eq "Enabled")) {
         Switch ($DefaultMFAMethod) {
@@ -26,12 +26,14 @@ ForEach ($User in $Users) {
         Name        = $User.DisplayName
         MFAUsed     = $MFAEnforced
         MFAMethod   = $MethodUsed 
-        PhoneNumber = $MFAPhone
     }
                  
     $Report.Add($ReportLine) 
 }
-
 Write-Host "Report is inC:\Users\TestLab\desktop\MFAUsers.CSV"
-$Report | Select Name, MFAUsed, MFAMethod, PhoneNumber | Sort Name | Out-GridView
+$Report | Select Name, MFAUsed, MFAMethod | Sort Name | Out-GridView
 $Report | Sort Name | Export-CSV -NoTypeInformation C:\Users\TestLab\desktop\MFAUsers.csv
+
+
+
+Get-mailboxfolderpermission -Identity michael@wave38.tk
