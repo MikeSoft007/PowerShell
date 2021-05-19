@@ -1,4 +1,5 @@
 #Script to assign full access permission to admin in all mailbox in tenant
+
 # $Mailboxes = Get-Mailbox -ResultSize Unlimited -RecipientTypeDetails UserMailbox
 $Mailboxes = Get-Mailbox -ResultSize unlimited -Filter {(RecipientTypeDetails -eq 'UserMailbox') -and (Alias -ne 'Admin')}
 $Total_Mailboxes = $Mailboxes.Count
