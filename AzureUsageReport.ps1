@@ -1,0 +1,1 @@
+﻿New-DynamicDistributionGroup -Name "Mike Soft Management TeamDDL" -RecipientFilter "(RecipientType -eq 'UserMailbox') -and (Title -like 'IT*')"

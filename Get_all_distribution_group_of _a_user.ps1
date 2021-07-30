@@ -31,14 +31,25 @@ foreach($Mailbox in $match_group){
         $Result = New-Object PSObject -property @{ 
         GroupName = $Mailbox.DisplayName
         }
-        $Result | Out-GridView
+        #$Result | Out-GridView
         $Result | Export-Csv -NoTypeInformation -Path "C:\Users\TestLab\Desktop\TheGroups.csv" -Append
     }
     if ($i -eq $Last) {
-        Write-Host "FEMI we are done here :)"
+        Write-Host "we are done here :)"
         $i = 0
         break
     }
 }
 #EndRegion
 
+
+
+$User =read-host -Prompt"Enter User"
+
+$Mailbox=get-Mailbox $User
+
+$DN=$mailbox.DistinguishedName
+
+$Filter ="Members -like ""$DN"""
+
+Get-DistributionGroup -ResultSize Unlimited -Filter $Filter

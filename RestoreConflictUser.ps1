@@ -1,0 +1,1 @@
+Restore-MsolUser -UserPrincipalName "mail@contoso.com" -AutoReconcileProxyConflicts
