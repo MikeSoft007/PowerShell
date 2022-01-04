@@ -24,12 +24,6 @@
 .EXAMPLE
   MailboxPermissionReport.ps1 -adminUPN johndoe@contoso.com -path c:\temp\report.csv
   Store CSV report in c:\temp\report.csv
-.NOTES
-  Version:        1.0
-  Author:         R. Mens - LazyAdmin.nl
-  Creation Date:  30-11-2021
-  Purpose/Change: init
-  Link:           https://lazyadmin.nl/powershell/get-mailbox-permissions-with-powershell/
 #>
 param(
   [Parameter(
