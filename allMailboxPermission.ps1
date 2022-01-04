@@ -1,4 +1,37 @@
-﻿param(
+<#
+.SYNOPSIS
+  Create report of all mailbox permissions
+.DESCRIPTION
+  Get all mailbox permissions, including folder permissions for all or a selected group of users
+.EXAMPLE
+  .\MailboxPermissionReport.ps1 -adminUPN john@contoso.com
+  Generate the mailbox report with Shared mailboxes, store the csv file in the script root location.
+.EXAMPLE
+  .\MailboxPermissionReport.ps1 -adminUPN john@contoso.com -sharedMailboxes only
+  Get only the shared mailboxes
+.EXAMPLE
+  .\MailboxPermissionReport.ps1 -adminUPN john@contoso.com -sharedMailboxes no
+  Get only the user mailboxes
+.EXAMPLE
+  .\MailboxPermissionReport.ps1 -adminUPN john@contoso.com -folderPermissions:$false
+  Get the mailbox permissions without the folder (inbox and calendar) permissions
+.EXAMPLE
+  .\MailboxPermissionReport.ps1 -adminUPN john@contoso.com -UserPrincipalName jane@contoso.com,alex@contoso.com
+  Get the mailbox permissions for a selection of users
+.EXAMPLE
+  .\MailboxPermissionReport.ps1 -adminUPN john@contoso.com -displayNames:$false
+  Don't get the full displayname for each permissions (to speed up the script)
+.EXAMPLE
+  MailboxPermissionReport.ps1 -adminUPN johndoe@contoso.com -path c:\temp\report.csv
+  Store CSV report in c:\temp\report.csv
+.NOTES
+  Version:        1.0
+  Author:         R. Mens - LazyAdmin.nl
+  Creation Date:  30-11-2021
+  Purpose/Change: init
+  Link:           https://lazyadmin.nl/powershell/get-mailbox-permissions-with-powershell/
+#>
+param(
   [Parameter(
     Mandatory = $true,
     HelpMessage = "Enter the Exchange Online or Global admin username"
