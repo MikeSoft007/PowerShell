@@ -6,8 +6,6 @@ $allowedSenders = (Import-Csv -Path $csvFilePath).EmailAddress
 
 # Set the rule conditions
 $conditions = @{
-    'FromScope' = 'NotInOrganization'
-    'RecipientAddressContainsWords' = '@tobs.tk'
     'From' = $allowedSenders
 }
 
